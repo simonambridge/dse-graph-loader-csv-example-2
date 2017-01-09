@@ -1,0 +1,61 @@
+// Create the schema with vertices and edges with associated labels and properties
+ 
+// Properties
+schema.propertyKey('acct_num').Int().create()
+schema.propertyKey('first_name').Text().create()
+schema.propertyKey('last_name').Text().create()
+schema.propertyKey('company').Text().create()
+schema.propertyKey('street').Text().create()
+schema.propertyKey('town').Text().create()
+schema.propertyKey('area').Text().create()
+schema.propertyKey('postcode').Text().create()
+
+schema.propertyKey('field1').Text().create()
+schema.propertyKey('field2').Text().create()
+schema.propertyKey('field3').Text().create()
+schema.propertyKey('field4').Text().create()
+schema.propertyKey('field5').Text().create()
+schema.propertyKey('field6').Text().create()
+schema.propertyKey('field7').Text().create()
+schema.propertyKey('field8').Text().create()
+schema.propertyKey('field9').Text().create()
+schema.propertyKey('field10').Text().create()
+schema.propertyKey('field11').Text().create()
+schema.propertyKey('field12').Text().create()
+schema.propertyKey('field13').Text().create()
+schema.propertyKey('field14').Text().create()
+schema.propertyKey('field15').Text().create()
+schema.propertyKey('field16').Text().create()
+schema.propertyKey('field17').Text().create()
+schema.propertyKey('field18').Text().create()
+schema.propertyKey('field19').Text().create()
+schema.propertyKey('field20').Text().create()
+schema.propertyKey('field21').Text().create()
+schema.propertyKey('field22').Text().create()
+schema.propertyKey('field23').Text().create()
+schema.propertyKey('field24').Text().create()
+schema.propertyKey('field25').Text().create()
+schema.propertyKey('field26').Text().create()
+schema.propertyKey('field27').Text().create()
+schema.propertyKey('field28').Text().create()
+schema.propertyKey('field29').Text().create()
+schema.propertyKey('field30').Text().create()
+schema.propertyKey('from_acct').Int().create()
+schema.propertyKey('to_acct').Int().create()
+schema.propertyKey('amount').Double().create()
+schema.propertyKey('description').Text().create()
+ 
+// Verticies
+schema.vertexLabel('account').properties('acct_num','first_name','last_name','company','street','town','area','postcode').create() 
+
+// Edges
+schema.edgeLabel('transaction').properties('field1','field2','field3','field4','field5','field6','field7','field8','field9','field10','field11','field12','field13','field14','field15','field16','field17','field18','field19','field20','field21','field22','field23','field24','field25','field26','field27','field28','field29','field30','from_acct','to_acct','amount','description').connection('account','account').create()
+ 
+// Indexing account num 
+schema.vertexLabel('account').index('acct_num').materialized().by('acct_num').add()
+schema.vertexLabel('account').index('acctTxnIndex').outE('transaction').by('from_acct').add() 
+
+// Caching account and transaction properties
+// schema.vertexLabel('account').cache().bothE('transaction').ttl(60).add()
+// schema.vertexLabel('account').cache().properties().ttl(60).add()
+
