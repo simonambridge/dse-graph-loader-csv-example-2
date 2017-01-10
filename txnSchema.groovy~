@@ -56,6 +56,6 @@ schema.vertexLabel('account').index('acct_num').materialized().by('acct_num').ad
 schema.vertexLabel('account').index('acctTxnIndex').outE('transaction').by('from_acct').add() 
 
 // Caching account and transaction properties
-schema.vertexLabel('account').cache().bothE('transaction').ttl(60).add()
-schema.vertexLabel('account').cache().properties().ttl(60).add()
+// schema.vertexLabel('account').cache().bothE('transaction').ttl(60).add()
+// schema.vertexLabel('account').cache().properties().ttl(60).add()
 

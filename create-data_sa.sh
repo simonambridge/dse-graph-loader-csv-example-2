@@ -3,6 +3,7 @@
 NUM_TXN=200000
 START=1
 NUM_ACT=10000
+GEN_PATH=/root/csv-test-data-generator
 CWD=`pwd`
 OUTPUT_PATH=$CWD
 
@@ -13,12 +14,14 @@ echo "Creating accounts..."
 for (( i=$START; i<=$NUM_ACT; i++ ))
 do
    echo $i
-   randomLine=`python getLine.py | sed "s/\['//;s/'\]//" | sed -r ':r; s/("[^",]+),([^",]*)/\1 \2/g; tr; s/"//g' | awk 'BEGIN {FS=","}{print $1, ",", $2, ",", $3, ",", $4,",", $5, ",", $6 ",", $7}'`
+   randomLine=`python getLine.py | sed "s/\['//;s/'\]//" | sed -r ':r; s/("[^",]+),([^",]*)/\1 \2/g; tr; s/"//g' | awk 'BEGIN {FS=","}{print $1","$2","$3","$4","$5","$6","$7}'`
    echo $i, $randomLine >> act.csv
 done
 
 
 # Create edges
+
+cd $GEN_PATH
 
 TXN_FIELDS="natural($NUM_ACT),natural($NUM_ACT),dollar,string(128)"
 

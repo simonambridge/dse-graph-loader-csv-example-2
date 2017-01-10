@@ -11,7 +11,7 @@ config batch_size: 10000
 // Only set to new if data being inserted is new
 config load_new: true
 
-inputfiledir = '/root/HSBC_Graph/'
+inputfiledir = '/root/Graph_loader_CSV/'
 txnInput = File.csv(inputfiledir + 'txn.csv').header('field1','field2','field3','field4','field5','field6','field7','field8','field9','field10','field11','field12','field13','field14','field15','field16','field17','field18','field19','field20','field21','field22','field23','field24','field25','field26','field27','field28','field29','field30','from_acct','to_acct','amount','description')
 txnInput = txnInput.transform { it['from_acct'] = it['from_acct'].toInteger(); it }
 txnInput = txnInput.transform { it['to_acct'] = it['to_acct'].toInteger(); it }
